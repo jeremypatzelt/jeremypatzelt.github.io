@@ -71,4 +71,23 @@
     }, { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('section.hero, section[id]').forEach(function (s) { so.observe(s); });
   }
+
+  // stacking experience cards: the card underneath eases back as the next one slides over it
+  var xc = Array.prototype.slice.call(document.querySelectorAll('.xcard'));
+  var xTick = false;
+  function xUpdate() {
+    xTick = false;
+    var off = reduce || window.innerWidth <= 860;
+    xc.forEach(function (c, i) {
+      var n = xc[i + 1];
+      if (off || !n) { c.style.transform = ''; c.style.filter = ''; return; }
+      var top = parseFloat(getComputedStyle(c).top) || 0;
+      var d = n.getBoundingClientRect().top - (top + 18);
+      var p = 1 - Math.min(Math.max(d / c.offsetHeight, 0), 1);
+      c.style.transform = 'scale(' + (1 - p * 0.06).toFixed(4) + ') rotate(' + (-p * 1.2).toFixed(3) + 'deg)';
+      c.style.filter = 'brightness(' + (1 - p * 0.12).toFixed(3) + ')';
+    });
+  }
+  function xReq() { if (!xTick) { xTick = true; requestAnimationFrame(xUpdate); } }
+  if (xc.length) { window.addEventListener('scroll', xReq, { passive: true }); window.addEventListener('resize', xReq); xUpdate(); }
 })();
