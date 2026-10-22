@@ -90,4 +90,7 @@
   }
   function xReq() { if (!xTick) { xTick = true; requestAnimationFrame(xUpdate); } }
   if (xc.length) { window.addEventListener('scroll', xReq, { passive: true }); window.addEventListener('resize', xReq); xUpdate(); }
+  document.querySelectorAll('.flip').forEach(function (f) {
+  f.addEventListener('click', function () { f.classList.toggle('on'); });
+});
 })();
