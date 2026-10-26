@@ -73,13 +73,13 @@
   }
 
   // stacking experience cards: the card underneath eases back as the next one slides over it
-  var xc = Array.prototype.slice.call(document.querySelectorAll('.xcard'));
+  var xc = Array.prototype.slice.call(document.querySelectorAll('.xcard,.scard'));
   var xTick = false;
   function xUpdate() {
     xTick = false;
     var off = reduce || window.innerWidth <= 860;
     xc.forEach(function (c, i) {
-      var n = xc[i + 1];
+      var n = xc[i + 1]; if (n && n.parentNode !== c.parentNode) n = null;
       if (off || !n) { c.style.transform = ''; c.style.filter = ''; return; }
       var top = parseFloat(getComputedStyle(c).top) || 0;
       var d = n.getBoundingClientRect().top - (top + 18);
