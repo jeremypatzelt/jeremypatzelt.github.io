@@ -402,7 +402,6 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 @media (max-width: 640px) { .fn-row { grid-template-columns: 50px 1fr; } .fn-row p { grid-column: 2; text-align: left; } }
 @media (max-width: 800px) { .fn-stk { display: none; } }
 @media (prefers-reduced-motion: reduce) { .fn-stk, .fn-mq div { animation: none; } }
-}
 /* ================= CLOSING: Let's grab a coffee (hill scene) ================= */
 .closing.cf { background: #3F7DA8; isolation: isolate; }
 .closing.cf::before { display: none; }
