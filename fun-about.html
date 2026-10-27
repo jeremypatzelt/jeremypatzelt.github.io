@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beyond the Suit | Jeremy Patzelt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#161616;--muted:#6a6a66;--line:#E7E5DE;--cream:#F4F2EA;--blue:#5B66E6;--lime:#B6F26B;
+--f:"Inter","Helvetica Neue",Arial,system-ui,sans-serif;--pad:clamp(20px,5vw,80px)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--f);font-weight:400;font-size:17px;line-height:1.55;color:var(--ink);background:#fff;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{margin:0}a{color:inherit}
+.hd{font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.9}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100svh;overflow:hidden;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:90px 20px 190px;isolation:isolate}
+.scene{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.28))}
+.bar{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:20px var(--pad)}
+.logo{position:absolute;left:50%;transform:translateX(-50%);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;text-transform:uppercase}
+.gbtn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:500;font-size:.95rem;padding:9px 18px;border-radius:999px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:.2s}
+.gbtn:hover{background:#fff;color:var(--ink)}
+.me{display:flex;align-items:center;gap:14px;padding:10px 22px 10px 12px;border-radius:26px;background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);margin-bottom:clamp(26px,5vh,56px)}
+.av{width:52px;height:52px;border-radius:50%;background:url(photo-emory.webp) 82% 29%/500% no-repeat,#cfd8ff;border:2px solid rgba(255,255,255,.8);flex:none}
+.me b{display:block;font-weight:500;font-size:1.2rem;text-transform:uppercase;letter-spacing:-.01em;line-height:1.1}
+.me small{display:flex;align-items:center;gap:8px;font-size:.95rem;font-weight:400}
+.me small i{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.35)}
+.hl{position:relative;text-align:center}
+.hl h1{font-size:clamp(3rem,9.6vw,9rem);text-shadow:0 4px 40px rgba(0,0,0,.15)}
+.hl h1 span{display:block}
+.stk{position:absolute;display:flex;align-items:center;gap:10px;padding:8px 22px 8px 8px;border-radius:14px;color:var(--ink);font-weight:500;font-size:clamp(.9rem,1.5vw,1.25rem);box-shadow:0 14px 34px rgba(0,0,0,.22);white-space:nowrap;animation:fl 6s ease-in-out infinite;cursor:default;transition:transform .2s}
+.stk:hover{transform:rotate(0) scale(1.07)!important}
+.stk .ic{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:1.15rem;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.stk::after{content:"\1F4CE";position:absolute;top:-9px;left:48px;font-size:1.1rem}
+.k1{left:-4%;bottom:-6%;transform:rotate(-12deg);background:#EEF5DA}.k1 .ic{background:#7DBE2A}
+.k2{right:-5%;top:6%;transform:rotate(9deg);background:#F3E6FA;animation-delay:-2s}.k2 .ic{background:#E160E8}
+.k3{right:2%;bottom:-16%;transform:rotate(-5deg);background:#E6F0FA;animation-delay:-3.5s}.k3 .ic{background:#4AA3F0}
+.k4{left:2%;top:-14%;transform:rotate(6deg);background:#FFF1D2;animation-delay:-1s}.k4 .ic{background:#F6A93B}
+@keyframes fl{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.dock{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:12px;padding:12px;border-radius:30px;background:rgba(255,255,255,.28);border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.tile{position:relative;width:clamp(62px,8.6vw,100px);aspect-ratio:1;border-radius:24px;background-color:#fff;background-repeat:no-repeat;box-shadow:0 8px 20px rgba(0,0,0,.2);display:grid;place-items:center;text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.tile:hover{transform:translateY(-14px) scale(1.18);z-index:2}
+.t1{background-image:url(photo-emory.webp);background-size:360%;background-position:80% 28%}
+.t2{background-image:url(photo-buggy.webp);background-size:145%;background-position:40% 55%}
+.t3{background-image:url(photo-capybara.webp);background-size:150%;background-position:65% 62%}
+.t4{background:linear-gradient(160deg,#6BC3FF,#3B6BFF);font-size:2.4rem}
+.t4 em{position:absolute;top:-7px;right:-7px;width:26px;height:26px;border-radius:50%;background:#FF3B30;color:#fff;font:600 .8rem/26px var(--f);text-align:center;border:2px solid #fff}
+.tile span{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translate(-50%,6px);background:#161616;color:#fff;font-size:.8rem;font-weight:500;padding:5px 12px;border-radius:999px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s}
+.tile:hover span{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.stk{display:none}.k1,.k2{display:flex}.k1{left:-8%;bottom:-14%}.k2{right:-8%;top:-12%}.logo{font-size:1.2rem}.gbtn{padding:8px 14px;font-size:.85rem}}
+
+/* ============ BELOW ============ */
+.mq{background:var(--ink);color:#fff;overflow:hidden;white-space:nowrap;padding:16px 0}
+.mq div{display:inline-block;animation:mq 30s linear infinite;font-weight:800;text-transform:uppercase;letter-spacing:-.03em;font-size:clamp(1.4rem,3vw,2.4rem)}
+.mq span{margin:0 22px}.mq em{font-style:normal;color:var(--lime)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.sec{padding:clamp(70px,9vw,130px) var(--pad);max-width:1500px;margin:0 auto}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:6px 18px;font-size:.95rem;font-weight:500;margin-bottom:26px;background:#fff}
+.sec h2{font-size:clamp(2.6rem,7.4vw,6.6rem)}
+.sec h2 b{color:var(--blue);font-weight:800}
+.lead{max-width:48ch;font-size:clamp(1.1rem,1.7vw,1.4rem);color:var(--muted);margin-top:26px;line-height:1.4}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(36px,5vw,64px)}
+@media(max-width:760px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--cream);border-radius:30px;padding:30px 32px}
+.stat strong{display:block;font-weight:800;letter-spacing:-.05em;font-size:clamp(3.4rem,7vw,5.6rem);line-height:1}
+.stat b{display:block;font-weight:600;font-size:1.15rem;margin:8px 0 6px}
+.stat span{color:var(--muted);font-size:1rem}
+.stat.blue{background:var(--blue);color:#fff}.stat.blue span{color:rgba(255,255,255,.85)}
+
+.moments{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(36px,5vw,60px)}
+@media(max-width:900px){.moments{grid-template-columns:1fr}}
+.mc{background:var(--cream);border-radius:34px;padding:22px 22px 26px;display:flex;flex-direction:column;align-items:center;transition:transform .3s,background .3s}
+.mc:hover{transform:translateY(-8px) rotate(-1deg)}
+.mc:nth-child(2){background:#E9F1DA}.mc:nth-child(3){background:#EFE6F6}
+.mc .pic{width:100%;aspect-ratio:1;display:grid;place-items:center}
+.mc img{width:86%;height:auto;border-radius:50%;transition:transform .5s}
+.mc:hover img{transform:scale(1.06) rotate(3deg)}
+.mc h3{font-weight:700;letter-spacing:-.03em;font-size:1.6rem;margin-top:10px;text-align:center}
+.mc p{color:var(--muted);font-size:.95rem;margin-top:4px;text-align:center}
+.chips{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.chips span{background:#fff;border-radius:999px;padding:4px 14px;font-size:.82rem;font-weight:500}
+
+.rows{margin-top:clamp(30px,4vw,56px);border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:70px 1fr auto;gap:18px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line);transition:padding .25s,background .25s,color .25s;cursor:default}
+.row:hover{background:var(--blue);color:#fff;padding-left:22px;padding-right:22px;border-radius:22px;border-color:transparent}
+.row .e{font-size:2.2rem;line-height:1}
+.row h3{font-weight:800;text-transform:uppercase;letter-spacing:-.04em;font-size:clamp(1.7rem,4.4vw,3.6rem);line-height:1}
+.row p{color:var(--muted);text-align:right;font-size:1.05rem}
+.row:hover p{color:rgba(255,255,255,.88)}
+.row:hover .e{animation:jig .6s}
+@keyframes jig{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg) scale(1.2)}75%{transform:rotate(12deg) scale(1.2)}}
+@media(max-width:640px){.row{grid-template-columns:50px 1fr}.row p{grid-column:2;text-align:left}}
+
+.end{position:relative;overflow:hidden;margin:40px 14px 14px;border-radius:44px;color:#fff;text-align:center;padding:clamp(80px,12vw,150px) var(--pad);isolation:isolate}
+.end .scene{border-radius:44px}
+.end::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(0,0,0,.22)}
+.end h2{font-size:clamp(2.8rem,9vw,8rem);font-weight:800;text-transform:uppercase;letter-spacing:-.045em;line-height:.9}
+.end p{max-width:42ch;margin:24px auto 0;font-size:1.2rem}
+.acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px}
+.acts a{padding:15px 30px;border-radius:999px;font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.7);background:rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:.15s}
+.acts a:first-child{background:#fff;color:var(--ink);border-color:#fff}
+.acts a:hover{transform:translateY(-2px)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:10px var(--pad) 40px;color:var(--muted);font-size:.92rem}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3F7DA8"/><stop offset="1" stop-color="#7FAFCB"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="22"/></filter>
+<symbol id="land" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <g filter="url(#blur)" fill="#fff" opacity=".85"><ellipse cx="1000" cy="130" rx="170" ry="80"/><ellipse cx="1150" cy="220" rx="130" ry="90"/><ellipse cx="880" cy="250" rx="120" ry="60"/><ellipse cx="1060" cy="330" rx="90" ry="70"/></g>
+  <path d="M300 520 Q 800 250 1500 560 L1600 900 L0 900 L0 640Z" fill="#587A3A"/>
+  <path d="M0 330 Q 380 470 760 700 L1000 900 L0 900Z" fill="#8FA84B"/>
+  <path d="M1600 470 Q 1300 560 1000 820 L930 900 L1600 900Z" fill="#B7BE3C"/>
+  <path d="M0 640 Q 500 700 900 900 L0 900Z" fill="#7C9743" opacity=".75"/>
+</symbol></defs></svg>
+
+<section class="hero" id="top">
+  <svg class="scene" aria-hidden="true"><use href="#land"/></svg>
+  <div class="bar"><a class="gbtn" href="index.html">&larr; Main site</a><span class="logo">Jeremy&reg;</span><a class="gbtn" href="#contact">Say hi</a></div>
+
+  <div class="me"><span class="av" role="img" aria-label="Jeremy"></span><div><b>Jeremy &ndash; Strategist</b><small><i></i>Off the clock</small></div></div>
+
+  <div class="hl">
+    <h1 class="hd"><span>More to me</span><span>than the</span><span>suit &amp; deck</span></h1>
+    <span class="stk k1"><i class="ic">&#9917;</i>Soccer</span>
+    <span class="stk k2"><i class="ic">&#9992;&#65039;</i>Travel</span>
+    <span class="stk k3"><i class="ic">&#9975;&#65039;</i>Skiing</span>
+    <span class="stk k4"><i class="ic">&#127836;</i>Cooking</span>
+  </div>
+
+  <nav class="dock" aria-label="Photos and contact">
+    <a class="tile t1" href="#moments" aria-label="Emory"><span>Emory</span></a>
+    <a class="tile t2" href="#moments" aria-label="Desert ride"><span>Desert ride</span></a>
+    <a class="tile t3" href="#moments" aria-label="Capybara"><span>New friend</span></a>
+    <a class="tile t4" href="#contact" aria-label="Say hi">&#128172;<em>1</em><span>Say hi</span></a>
+  </nav>
+</section>
+
+<div class="mq"><div id="mqin"></div></div>
+
+<section class="sec" id="about">
+  <span class="tag rv">About</span>
+  <h2 class="hd rv">Strategy by day.<br><b>Life</b> the rest.</h2>
+  <p class="lead rv">I like building brands people connect with, and I think the best ideas come from being curious about everything else too.</p>
+  <div class="stats">
+    <div class="stat rv"><strong>3</strong><b>Continents explored</b><span>Africa, Asia and Europe, with more on the list.</span></div>
+    <div class="stat blue rv"><strong>8</strong><b>Things I'm into</b><span>From Formula 1 to Korean cooking.</span></div>
+    <div class="stat rv"><strong>1</strong><b>Capybara befriended</b><span>Highlight of the year, no notes.</span></div>
+  </div>
+</section>
+
+<section class="sec" id="moments" style="padding-top:0">
+  <span class="tag rv">Snapshots</span>
+  <h2 class="hd rv">Moments that<br>tell <b>stories</b></h2>
+  <div class="moments">
+    <div class="mc rv"><div class="pic"><img src="photo-emory.webp" alt="Jeremy in his Emory graduation gown in front of an Emory banner"></div><h3>Emory</h3><p>Graduation season</p><div class="chips"><span>BBA</span><span>Class of 2026</span></div></div>
+    <div class="mc rv"><div class="pic"><img src="photo-buggy.webp" alt="Dune buggy in the desert at sunset"></div><h3>Desert sunset</h3><p>Chasing the last light</p><div class="chips"><span>Travel</span><span>Adventure</span></div></div>
+    <div class="mc rv"><div class="pic"><img src="photo-capybara.webp" alt="Jeremy petting a capybara"></div><h3>New friend</h3><p>He was very calm about it</p><div class="chips"><span>Animals</span><span>Soccer wall</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="into" style="padding-top:0">
+  <span class="tag rv">Off the clock</span>
+  <h2 class="hd rv">What I'm<br><b>into</b></h2>
+  <div class="rows">
+    <div class="row rv"><span class="e">&#9917;</span><h3>Soccer</h3><p>Chelsea FC, Atlanta United</p></div>
+    <div class="row rv"><span class="e">&#127936;</span><h3>Basketball</h3><p>New York Knicks</p></div>
+    <div class="row rv"><span class="e">&#127934;</span><h3>Tennis</h3><p>French and US Open</p></div>
+    <div class="row rv"><span class="e">&#9975;&#65039;</span><h3>Skiing</h3><p>Massachusetts Berkshires</p></div>
+    <div class="row rv"><span class="e">&#127950;&#65039;</span><h3>Formula 1</h3><p>Ferrari and Lewis Hamilton</p></div>
+    <div class="row rv"><span class="e">&#9992;&#65039;</span><h3>Traveling</h3><p>Africa, Asia and Europe</p></div>
+    <div class="row rv"><span class="e">&#128084;</span><h3>Fashion</h3><p>Thrifting and streetwear</p></div>
+    <div class="row rv"><span class="e">&#127836;</span><h3>Cooking</h3><p>Korean</p></div>
+  </div>
+</section>
+
+<section class="end" id="contact">
+  <svg class="scene" aria-hidden="true"><use href="#land"/></svg>
+  <h2>Let's grab<br>a coffee</h2>
+  <p>Happy to talk strategy, brands, soccer or travel plans.</p>
+  <div class="acts">
+    <a href="https://www.linkedin.com/in/jeremypatzelt/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+    <a href="https://www.instagram.com/jeremy_patzelt/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:Jeremy.patzelt@gmail.com">Gmail</a>
+  </div>
+</section>
+<footer><span>&copy; 2026 Jeremy Patzelt</span><a href="index.html">Back to main site &uarr;</a></footer>
+
+<script>
+(function(){
+  var w=['Soccer','Basketball','Tennis','Skiing','Formula 1','Traveling','Fashion','Cooking'],h='';
+  w.forEach(function(x){h+='<span>'+x+'</span><span><em>&#10022;</em></span>';});
+  document.getElementById('mqin').innerHTML=h+h+h+h;
+  var els=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.12});
+    els.forEach(function(e,i){e.style.transitionDelay=(i%3)*80+'ms';io.observe(e);});
+  }else{els.forEach(function(e){e.classList.add('in');});}
+})();
+</script>
+</body>
+</html>
