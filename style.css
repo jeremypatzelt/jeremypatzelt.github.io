@@ -275,4 +275,27 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
   .scard { position: static; grid-template-columns: 1fr; min-height: 0; }
   .smedia { margin: 14px 14px 0; min-height: 190px; gap: 20px; }
   .spanel { margin: 14px; }
-}
+.flip { -webkit-tap-highlight-color: transparent; }
+.flip-in { -webkit-transform-style: preserve-3d; transform-style: preserve-3d; }
+.flip.on .flip-in { transform: rotateY(180deg); }
+
+/* ================= LIQUID GLASS FLIP CARDS - WHITE (By the numbers) ================= */
+.gstage { position: relative; }
+.gstage .flips { gap: 20px; }
+.gstage .flip { position: relative; overflow: hidden; height: 300px; border-radius: 32px; background: linear-gradient(155deg, rgba(255,255,255,.98) 0%, rgba(246,247,252,.92) 55%, rgba(233,236,248,.95) 100%); border: 1.5px solid rgba(255,255,255,.95); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); box-shadow: 0 0 0 1px rgba(20,30,90,.08), inset 0 2px 0 rgba(255,255,255,1), inset 0 -30px 50px rgba(91,102,230,.10), 0 22px 46px rgba(30,40,110,.16), 0 4px 10px rgba(30,40,110,.08); color: var(--ink, #2B2B2B); transition: transform .3s ease, box-shadow .3s ease; }
+.gstage .flip::before { content: ""; position: absolute; left: -25%; top: -34%; width: 95%; height: 62%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,1), rgba(255,255,255,0)); filter: blur(6px); pointer-events: none; z-index: 0; transition: transform .6s ease; }
+.gstage .flip::after { content: ""; position: absolute; right: -30%; bottom: -35%; width: 90%; height: 70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(91,102,230,.22), rgba(91,102,230,0)); pointer-events: none; z-index: 0; }
+.gstage .flip:hover::before { transform: translate(18%, 10%); }
+.gstage .flip-in { z-index: 1; }
+.gstage .flip:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(20,30,90,.10), inset 0 2px 0 rgba(255,255,255,1), inset 0 -30px 50px rgba(91,102,230,.14), 0 32px 58px rgba(30,40,110,.22), 0 6px 14px rgba(30,40,110,.10); }
+.gstage .ff, .gstage .fb { background: none; border: 0; padding: 22px; border-radius: 32px; color: var(--ink, #2B2B2B); justify-content: flex-end; }
+.gstage .fb { background: linear-gradient(180deg, rgba(91,102,230,.02), rgba(91,102,230,.14)); font-size: 1rem; line-height: 1.45; }
+.gstage .gpill { position: absolute; top: 20px; left: 20px; font-style: normal; font-size: .85rem; font-weight: 500; letter-spacing: .01em; padding: 6px 15px; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid rgba(20,30,90,.14); color: #2B2B2B; box-shadow: 0 2px 6px rgba(30,40,110,.06); }
+.gstage .gic { position: absolute; top: 14px; right: 14px; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-size: 1.35rem; line-height: 1; color: #5B66E6; background: rgba(255,255,255,.85); box-shadow: 0 0 0 4px rgba(91,102,230,.16), inset 0 1px 0 #fff, 0 3px 8px rgba(30,40,110,.10); transition: transform .5s; }
+.gstage .flip:hover .gic, .gstage .flip.on .gic { transform: rotate(180deg); }
+.gstage .ff strong { font-family: var(--display); font-weight: 400; font-size: clamp(3.4rem, 5.6vw, 5rem); line-height: 1; color: #2B2B2B; }
+.gstage .ff .gl { color: #6B6B6B; font-size: 1.15rem; margin-top: 6px; }
+.gstage .fb b { display: block; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 8px; color: #2B2B2B; }
+.gstage .fb .gd { color: #555; }
+.gstage .flip:nth-child(n) .fb { background: linear-gradient(180deg, rgba(91,102,230,.02), rgba(91,102,230,.14)); }
+@media (max-width: 900px) { .gstage .flip { height: 260px; } }
