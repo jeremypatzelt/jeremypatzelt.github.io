@@ -101,5 +101,4 @@
     f.addEventListener('click', function () { f.classList.toggle('on'); });
   }
 });
-});
 })();
