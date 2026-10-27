@@ -91,6 +91,15 @@
   function xReq() { if (!xTick) { xTick = true; requestAnimationFrame(xUpdate); } }
   if (xc.length) { window.addEventListener('scroll', xReq, { passive: true }); window.addEventListener('resize', xReq); xUpdate(); }
   document.querySelectorAll('.flip').forEach(function (f) {
-  f.addEventListener('click', function () { f.classList.toggle('on'); });
+  var canHover = window.matchMedia('(hover: hover)').matches;
+  if (canHover) {
+    f.addEventListener('mouseenter', function () { f.classList.add('on'); });
+    f.addEventListener('mouseleave', function () { f.classList.remove('on'); });
+    f.addEventListener('focus', function () { f.classList.add('on'); });
+    f.addEventListener('blur', function () { f.classList.remove('on'); });
+  } else {
+    f.addEventListener('click', function () { f.classList.toggle('on'); });
+  }
+});
 });
 })();
