@@ -300,3 +300,28 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .gstage .fb .gd { color: #555; }
 .gstage .flip:nth-child(n) .fb { background: linear-gradient(180deg, rgba(91,102,230,.02), rgba(91,102,230,.14)); }
 @media (max-width: 900px) { .gstage .flip { height: 260px; } }
+/* ================= LIQUID GLASS STACK CARDS (What I can do + Experience) ================= */
+.xcard, .scard { background: linear-gradient(155deg, rgba(255,255,255,.88) 0%, rgba(241,243,253,.72) 58%, rgba(226,231,249,.78) 100%); border: 1.5px solid rgba(255,255,255,.95); -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%); box-shadow: 0 0 0 1px rgba(20,30,90,.08), inset 0 2px 0 #fff, inset 0 -40px 60px rgba(91,102,230,.08), 0 26px 56px rgba(30,40,110,.18), 0 -8px 24px rgba(30,40,110,.06); }
+
+/* dark glass panels */
+.xpanel, .spanel { position: relative; overflow: hidden; background: linear-gradient(160deg, rgba(44,48,78,.93) 0%, rgba(12,14,28,.95) 62%, rgba(8,9,20,.96) 100%); border: 1px solid rgba(255,255,255,.22); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.38), inset 0 0 40px rgba(120,135,255,.10), 0 12px 30px rgba(10,14,50,.30); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
+.xpanel::before, .spanel::before { content: ""; position: absolute; left: -18%; top: -30%; width: 80%; height: 55%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.20), rgba(255,255,255,0)); pointer-events: none; }
+.xpanel > *, .spanel > * { position: relative; }
+.xtags span { background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18); color: #F0F2FF; }
+.xmetric { border-top-color: rgba(255,255,255,.14); }
+.xbtn { background: rgba(255,255,255,.94); box-shadow: inset 0 1px 0 #fff, 0 6px 16px rgba(0,0,0,.25); }
+.xbtn.off { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #AEB3CC; box-shadow: none; }
+
+/* light glass tile with the big number / logo */
+.smedia { position: relative; overflow: hidden; background: linear-gradient(160deg, rgba(255,255,255,.95), rgba(234,238,253,.88)); border: 1px solid rgba(255,255,255,1); box-shadow: inset 0 2px 0 #fff, inset 0 -30px 50px rgba(91,102,230,.10), 0 8px 22px rgba(30,40,110,.10); }
+.smedia::after { content: ""; position: absolute; right: -25%; bottom: -35%; width: 80%; height: 70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(91,102,230,.22), rgba(91,102,230,0)); pointer-events: none; }
+.smedia > * { position: relative; z-index: 1; }
+.xmedia { margin: 14px 0 14px 14px; border-radius: 26px; overflow: hidden; background: rgba(255,255,255,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.9), 0 8px 22px rgba(30,40,110,.12); }
+.xmedia::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: 26px; pointer-events: none; background: linear-gradient(140deg, rgba(255,255,255,.34) 0%, rgba(255,255,255,0) 38%), linear-gradient(0deg, rgba(91,102,230,.08), rgba(255,255,255,0) 40%); box-shadow: inset 0 1.5px 0 rgba(255,255,255,.85), inset 0 0 0 1px rgba(255,255,255,.35); }
+
+/* service rows as glass chips */
+.srows li { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); box-shadow: inset 0 1px 0 rgba(255,255,255,.16); color: #F0F2FF; }
+.srows li:hover { background: rgba(91,102,230,.88); border-color: rgba(255,255,255,.4); }
+.srows i { background: rgba(255,255,255,.12); }
+
+@media (max-width: 860px) { .xmedia { margin: 14px 14px 0; } }
