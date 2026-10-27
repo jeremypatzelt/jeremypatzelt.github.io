@@ -325,7 +325,6 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .srows i { background: rgba(255,255,255,.12); }
 
 @media (max-width: 860px) { .xmedia { margin: 14px 14px 0; } }
-}
 /* ================= BEYOND THE RESUME: fun hero card + photos ================= */
 .fn-card { position: relative; isolation: isolate; overflow: hidden; border-radius: 44px; color: #fff; min-height: min(86svh, 760px); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 20px 170px; margin-bottom: clamp(36px, 5vw, 64px); }
 .fn-scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -2; }
