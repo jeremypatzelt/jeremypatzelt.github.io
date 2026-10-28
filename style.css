@@ -418,3 +418,43 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .theme span::after { content: "\2600\FE0F"; font-size: 1.35rem; line-height: 1; }
 .theme[aria-checked="true"] span { transform: translateX(42px); }
 .theme[aria-checked="true"] span::after { content: "\1F319"; }
+}
+/* ================= LIQUID GLASS: About stats + Moments cards ================= */
+.fn-stat, .fn-mc {
+  position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(155deg, rgba(255,255,255,.95) 0%, rgba(241,243,253,.80) 58%, rgba(226,231,249,.85) 100%);
+  border: 1.5px solid rgba(255,255,255,.95);
+  -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%);
+  box-shadow: 0 0 0 1px rgba(20,30,90,.08), inset 0 2px 0 #fff, inset 0 -40px 60px rgba(91,102,230,.08), 0 22px 46px rgba(30,40,110,.16), 0 4px 10px rgba(30,40,110,.08);
+}
+/* top-left shine */
+.fn-stat::before, .fn-mc::before {
+  content: ""; position: absolute; left: -20%; top: -34%; width: 90%; height: 60%; border-radius: 50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+/* bottom-right blue glow */
+.fn-stat::after, .fn-mc::after {
+  content: ""; position: absolute; right: -28%; bottom: -35%; width: 85%; height: 70%; border-radius: 50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(91,102,230,.22), rgba(91,102,230,0));
+}
+/* same white glass on all three Moments cards (removes the green and purple tints) */
+.fn-mc:nth-child(2), .fn-mc:nth-child(3) {
+  background: linear-gradient(155deg, rgba(255,255,255,.95) 0%, rgba(241,243,253,.80) 58%, rgba(226,231,249,.85) 100%);
+}
+/* blue stat card becomes a blue glass card */
+.fn-stat.fn-blue {
+  background: linear-gradient(155deg, rgba(120,131,255,.95) 0%, rgba(91,102,230,.92) 55%, rgba(63,74,200,.95) 100%);
+  border-color: rgba(255,255,255,.55);
+  box-shadow: 0 0 0 1px rgba(20,30,90,.10), inset 0 2px 0 rgba(255,255,255,.55), inset 0 -40px 60px rgba(30,40,160,.25), 0 22px 46px rgba(60,70,200,.30);
+}
+.fn-stat.fn-blue::before { background: radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0)); }
+.fn-stat.fn-blue::after { background: radial-gradient(closest-side, rgba(255,255,255,.18), rgba(255,255,255,0)); }
+/* hover lift */
+.fn-stat, .fn-mc { transition: transform .3s ease, box-shadow .3s ease; }
+.fn-stat:hover { transform: translateY(-6px); }
+/* keep text dark in dark mode (cards stay light glass) */
+.fn-stat strong, .fn-stat b, .fn-mc h4 { color: #2B2B2B; }
+.fn-stat span, .fn-mc p { color: #6B6B6B; }
+.fn-stat.fn-blue strong, .fn-stat.fn-blue b { color: #fff; }
+.fn-stat.fn-blue span { color: rgba(255,255,255,.88); }
+.fn-chips span { background: rgba(255,255,255,.85); border: 1px solid rgba(20,30,90,.10); box-shadow: 0 2px 6px rgba(30,40,110,.06); }
