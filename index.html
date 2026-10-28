@@ -382,7 +382,11 @@
   <a href="#top">Back to top &uarr;</a>
 </footer>
 <div class="lightbox" id="lightbox" hidden><button type="button" aria-label="Close photo">&times;</button><img alt=""></div>
-<button class="theme" id="theme" role="switch" aria-checked="false" aria-label="Dark mode"><span></span></button>
+     <div class="tsw" id="tsw" role="radiogroup" aria-label="Theme">
+     <button type="button" data-mode="light" role="radio" aria-checked="true" aria-label="Light mode" title="Light">☀️</button>
+     <button type="button" data-mode="dark" role="radio" aria-checked="false" aria-label="Dark mode" title="Dark">🌙</button>
+     <button type="button" data-mode="lake" role="radio" aria-checked="false" aria-label="Lake mode" title="Lake">🌊</button>
+   </div>
 <!-- GOOGLY EYE CURSOR -->
 <div class="gcur" id="gcur" aria-hidden="true"><i><b></b></i><i><b></b></i></div>
 <style>
@@ -410,6 +414,6 @@
 })();
 </script>
 <script src="main.js"></script>
-<script src="lake.js?v=2" defer></script>
+<script src="lake.js?v=3" defer></script>
 </body>
 </html>
