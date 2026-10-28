@@ -461,6 +461,6 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .hero-grid { --pw: clamp(290px, 31cqw, 540px); }
 .hero { min-height: 0; padding-top: 130px; padding-bottom: 10px; }
 .avail { margin-top: 36px; }
-#experience { padding-top: clamp(30px, 4vw, 60px); }
+#experience { padding-top: clamp(60px, 7vw, 110px); }
 @media (max-width: 860px) { .hero { padding-top: 110px; } .portrait { width: min(88vw, 440px); } }
 
