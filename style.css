@@ -463,12 +463,18 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .avail { margin-top: 36px; }
 #experience { padding-top: clamp(60px, 7vw, 110px); }
 @media (max-width: 860px) { .hero { padding-top: 110px; } .portrait { width: min(88vw, 440px); } }
-/* ---- Flowing lake backdrop (light + dark) ---- */
-#lake { display: block; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
-body { background: transparent; }
-html { background: #f3f5ff; }
-html[data-theme="dark"] { background: #04040c; }
-.tk { background: transparent; }
-.nav { background: color-mix(in srgb, var(--bg) 60%, transparent); }
-/* performance: the lake moves, so don't re-blur it behind every card */
-.xcard, .scard, .xpanel, .spanel, .gstage .flip, .fn-stat, .fn-mc, .fn-me, .fn-dock { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* ---- Theme selector: light / dark / lake ---- */
+.tsw { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 55; display: flex; gap: 4px; padding: 5px; border-radius: 999px; background: rgba(255,255,255,.78); border: 1.5px solid var(--line); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+[data-theme="dark"] .tsw { background: rgba(20,20,28,.72); }
+.tsw button { width: 52px; height: 44px; border: 0; border-radius: 999px; background: transparent; font-size: 1.4rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .2s, transform .15s, opacity .2s; filter: grayscale(.7); opacity: .7; }
+.tsw button:hover { transform: scale(1.1); opacity: 1; }
+.tsw button.on { background: var(--blue); filter: none; opacity: 1; box-shadow: 0 3px 10px rgba(91,102,230,.45); }
+
+/* ---- Lake backdrop: only shows in lake mode ---- */
+#lake { display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+html[data-lake="on"] #lake { display: block; }
+html[data-lake="on"] { background: #04040c; }
+html[data-lake="on"] body { background: transparent; }
+html[data-lake="on"] .tk { background: transparent; }
+html[data-lake="on"] .nav { background: rgba(10,10,30,.45); }
+html[data-lake="on"] .xcard, html[data-lake="on"] .scard, html[data-lake="on"] .xpanel, html[data-lake="on"] .spanel, html[data-lake="on"] .gstage .flip, html[data-lake="on"] .fn-stat, html[data-lake="on"] .fn-mc, html[data-lake="on"] .fn-me, html[data-lake="on"] .fn-dock { -webkit-backdrop-filter: none; backdrop-filter: none; }
