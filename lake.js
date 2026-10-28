@@ -1,24 +1,25 @@
-/* Flowing Lagoon backdrop (WebGL). Draws into <canvas id="lake">. */
+/* Flowing Lagoon backdrop (WebGL), light + dark. Draws into <canvas id="lake">. v2: lighter shader, 30fps. */
 (function () {
   var cv = document.getElementById('lake');
   if (!cv) return;
   var gl = cv.getContext('webgl', { antialias: false, alpha: false, powerPreference: 'low-power' });
   if (!gl) return;
+  var root = document.documentElement;
 
   var vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   var fs = [
     'precision highp float;',
-    'uniform vec2 R;uniform float T;',
+    'uniform vec2 R;uniform float T;uniform float L;',
     'const vec3 C0=vec3(.03,.04,.30);const vec3 C1=vec3(.22,.33,1.0);const vec3 C2=vec3(.66,.38,1.0);const vec3 C3=vec3(.55,.78,1.0);',
     'float hash(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
     'float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
     ' return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}',
-    'float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<4;i++){s+=a*noise(p);p=p*2.03+17.;a*=.5;}return s;}',
+    'float fbm3(vec2 p){float a=.5,s=0.;for(int i=0;i<3;i++){s+=a*noise(p);p=p*2.03+17.;a*=.5;}return s;}',
     'float terrain(vec2 p){',
-    '  vec2 w=vec2(fbm(p*.22+T*.05),fbm(p*.22+7.3-T*.04));',
+    '  vec2 w=vec2(noise(p*.22+T*.05),noise(p*.22+7.3-T*.04));',
     '  p+=(w-.5)*2.2;',
-    '  float r=1.-abs(2.*fbm(p*.30)-1.);',
-    '  float h=pow(r,2.2)*1.15+fbm(p*.9+T*.03)*.30;',
+    '  float r=1.-abs(2.*fbm3(p*.30)-1.);',
+    '  float h=pow(r,2.2)*1.15+noise(p*.9+T*.03)*.30;',
     '  return h*.9;}',
     'vec3 pal(float x){x=clamp(x,0.,1.);',
     '  vec3 c=mix(C0,C1,smoothstep(0.,.4,x));c=mix(c,C2,smoothstep(.35,.7,x));return mix(c,C3,smoothstep(.65,1.,x));}',
@@ -28,13 +29,13 @@
     '  vec3 rd=normalize(vec3(uv.x,uv.y-.16,1.1));',
     '  vec3 col=vec3(.012,.012,.04);',
     '  float t=.8;vec3 acc=vec3(0.);',
-    '  for(int i=0;i<72;i++){',
+    '  for(int i=0;i<52;i++){',
     '    if(rd.y>0.)break;',
     '    vec3 p=ro+rd*t;float h=terrain(p.xz);float d=p.y-h;',
     '    float fog=exp(-t*.045);',
     '    float g=exp(-abs(d)*7.)+.18*exp(-max(-d,0.)*1.2);',
     '    vec3 pc=pal(h*.75+.1*sin(p.z*.15+T*.2)+.15);',
-    '    float stp=.05+t*.065;',
+    '    float stp=.07+t*.09;',
     '    acc+=pc*pc*g*fog*stp*(.22+h*.5);',
     '    t+=stp;',
     '    if(t>60.)break;}',
@@ -42,7 +43,10 @@
     '  float hz=exp(-abs(rd.y+.02)*16.);col+=mix(C0,C1,.6)*hz*.28;',
     '  float vg=smoothstep(1.3,.2,length(uv*vec2(.7,1.)));col*=.55+.45*vg;',
     '  col=1.-exp(-col*1.1);',
-    '  gl_FragColor=vec4(pow(col,vec3(.92)),1.);}'
+    '  vec3 dk=pow(col,vec3(.92));',
+    '  float lum=dot(col,vec3(.333));',
+    '  vec3 lt=mix(vec3(.96,.97,1.),clamp(col*1.25+vec3(.14),0.,1.),smoothstep(.02,.40,lum));',
+    '  gl_FragColor=vec4(mix(dk,lt,L),1.);}'
   ].join('\n');
 
   function sh(t, s) { var o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; }
@@ -59,10 +63,12 @@
   var loc = gl.getAttribLocation(pr, 'p');
   gl.enableVertexAttribArray(loc);
   gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  var uR = gl.getUniformLocation(pr, 'R'), uT = gl.getUniformLocation(pr, 'T');
+  var uR = gl.getUniformLocation(pr, 'R'), uT = gl.getUniformLocation(pr, 'T'), uL = gl.getUniformLocation(pr, 'L');
 
-  var scale = 0.6, time = 20, last = performance.now(), run = true;
+  var scale = 0.45, time = 20, last = performance.now(), lastDraw = 0, run = true;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function target() { return root.getAttribute('data-theme') === 'dark' ? 0 : 1; }
+  var L = target();
 
   function size() {
     var d = Math.min(window.devicePixelRatio || 1, 1.5) * scale;
@@ -75,15 +81,17 @@
 
   function frame(now) {
     if (!run) return;
+    requestAnimationFrame(frame);
+    if (now - lastDraw < 33) return;     /* cap at ~30 fps */
+    lastDraw = now;
     var dt = Math.min((now - last) / 1000, 0.1);
     last = now;
-    if (cv.offsetWidth > 0) {            /* skip drawing while hidden (light mode) */
-      if (!reduce) time += dt;
-      gl.uniform2f(uR, cv.width, cv.height);
-      gl.uniform1f(uT, time);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-    requestAnimationFrame(frame);
+    if (!reduce) time += dt;
+    L += (target() - L) * Math.min(1, dt * 6);   /* smooth light/dark fade */
+    gl.uniform2f(uR, cv.width, cv.height);
+    gl.uniform1f(uT, time);
+    gl.uniform1f(uL, L);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
   document.addEventListener('visibilitychange', function () {
     run = !document.hidden; last = performance.now();
