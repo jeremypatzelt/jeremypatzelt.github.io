@@ -418,7 +418,6 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .theme span::after { content: "\2600\FE0F"; font-size: 1.35rem; line-height: 1; }
 .theme[aria-checked="true"] span { transform: translateX(42px); }
 .theme[aria-checked="true"] span::after { content: "\1F319"; }
-}
 /* ================= LIQUID GLASS: About stats + Moments cards ================= */
 .fn-stat, .fn-mc {
   position: relative; overflow: hidden; isolation: isolate;
