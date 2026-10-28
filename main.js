@@ -20,18 +20,24 @@
   if (EMAIL) { eb.href = 'mailto:' + EMAIL; eb.hidden = false; }
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // dark mode toggle (remembered when storage is available)
-  var tg = document.getElementById('theme');
-  function setTheme(t) {
-    root.setAttribute('data-theme', t);
-    tg.setAttribute('aria-checked', t === 'dark' ? 'true' : 'false');
-    try { localStorage.setItem('jp-theme', t); } catch (e) {}
-  }
-  var saved = null;
-  try { saved = localStorage.getItem('jp-theme'); } catch (e) {}
-  if (saved === 'dark') setTheme('dark');
-  tg.addEventListener('click', function () { setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
-
+     // theme selector: light / dark / lake
+     var tsw = document.getElementById('tsw');
+     var tbtns = tsw ? Array.prototype.slice.call(tsw.querySelectorAll('button[data-mode]')) : [];
+     function setMode(m) {
+       root.setAttribute('data-theme', m === 'light' ? 'light' : 'dark');
+       if (m === 'lake') root.setAttribute('data-lake', 'on'); else root.removeAttribute('data-lake');
+       tbtns.forEach(function (b) {
+         var on = b.getAttribute('data-mode') === m;
+         b.setAttribute('aria-checked', on ? 'true' : 'false');
+         b.classList.toggle('on', on);
+       });
+       try { localStorage.setItem('jp-mode', m); } catch (e) {}
+     }
+     var savedMode = null;
+     try { savedMode = localStorage.getItem('jp-mode'); } catch (e) {}
+     setMode(savedMode === 'dark' || savedMode === 'lake' ? savedMode : 'light');
+     tbtns.forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
+  
   // reveal on scroll
   var rv = document.querySelectorAll('.head, .svc article, .about-in > div, .stat, .proj, .exp li, .tkgrid li, .fqlist details, .shead, .closing-in');
   rv.forEach(function (e) { e.classList.add('rv'); });
