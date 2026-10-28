@@ -463,11 +463,12 @@ footer a { text-decoration: none; } footer a:hover { color: var(--blue); }
 .avail { margin-top: 36px; }
 #experience { padding-top: clamp(60px, 7vw, 110px); }
 @media (max-width: 860px) { .hero { padding-top: 110px; } .portrait { width: min(88vw, 440px); } }
-/* ---- Flowing lake backdrop (dark mode) ---- */
-#lake { display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
-[data-theme="dark"] #lake { display: block; }
-[data-theme="dark"] body { background: transparent; }
+/* ---- Flowing lake backdrop (light + dark) ---- */
+#lake { display: block; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
+body { background: transparent; }
+html { background: #f3f5ff; }
 html[data-theme="dark"] { background: #04040c; }
-[data-theme="dark"] .tk { background: transparent; }
-[data-theme="dark"] .closing { background-color: transparent; }
-[data-theme="dark"] .nav { background: rgba(10,10,30,.45); }
+.tk { background: transparent; }
+.nav { background: color-mix(in srgb, var(--bg) 60%, transparent); }
+/* performance: the lake moves, so don't re-blur it behind every card */
+.xcard, .scard, .xpanel, .spanel, .gstage .flip, .fn-stat, .fn-mc, .fn-me, .fn-dock { -webkit-backdrop-filter: none; backdrop-filter: none; }
