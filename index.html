@@ -41,24 +41,22 @@
 <main id="main">
 
 <!-- HERO -->
-<section class="hero">
+<section class="tilt-hero" id="tiltHero">
   <h1 class="sr">Jeremy Patzelt, brand strategist</h1>
-  <div class="hero-grid">
-    <div class="hl">
-      <p class="hname">Jeremy Patzelt</p>
-      <p class="word" aria-hidden="true">Brand</p>
-    </div>
-    <figure class="portrait" id="portrait">
-      <img src="https://framerusercontent.com/images/3vHWPvXsZOzqGPtNmcAxQq204.jpeg?width=1208&amp;height=1130" alt="Portrait of Jeremy Patzelt" width="800" height="800" onerror="this.parentNode.classList.add('noimg');this.remove()">
-      <span class="initials" aria-hidden="true">JP</span>
-      <a class="hi" href="#contact" aria-label="Say hi, go to contact"><span class="wave" aria-hidden="true">&#128075;&#127997;</span></a>
-    </figure>
-    <div class="hr">
-      <p class="word w2" aria-hidden="true">Strategist</p>
-      <p class="tag">I'm a Strategist at BCG BrightHouse, discovering purpose and new heights for industry leading brands .</p>
+  <div class="tilt-side tilt-l"><p class="hname">Jeremy Patzelt</p><p class="word" aria-hidden="true">Brand</p></div>
+  <div class="tilt-stage" id="tiltStage">
+    <div class="tilt-shadow" id="tiltShadow"></div>
+    <div class="tilt-card" id="tiltCard">
+      <img class="t-photo" src="headshot.jpg" alt="Portrait of Jeremy Patzelt" draggable="false">
+      <div class="t-fade"></div>
+      <div class="t-rim"></div>
+      <span class="t-chip" style="--z:55px">BCG BrightHouse</span>
+      <span class="t-wave" style="--z:95px" aria-hidden="true">&#128075;&#127997;</span>
+      <div class="t-name" style="--z:75px"><b>Jeremy<br>Patzelt</b><small style="--z:30px">Brand Strategist</small></div>
+      <div class="t-glare" id="tiltGlare"></div>
     </div>
   </div>
-  <p class="avail"><i></i>Always Open To Making New Connections!</p>
+  <div class="tilt-side tilt-r"><p class="word" aria-hidden="true">Strategist</p><p class="tag">I'm a Strategist at BCG BrightHouse, discovering purpose and new heights for industry leading brands.</p></div>
 </section>
 <!-- PROFFESIONAL EXPERIENCES -->
 <section class="sec" id="Professional Experiences">
@@ -475,5 +473,7 @@
 </script>
 <script src="main.js"></script>
 <script src="lake.js?v=3" defer></script>
+<script src="tilt-card.js?v=1" defer></script>
+<script>document.addEventListener('DOMContentLoaded', function () { mountTilt({ max: 16 }); });</script>
 </body>
 </html>
