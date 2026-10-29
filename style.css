@@ -591,3 +591,7 @@ html[data-lake="on"] .tkgrid li, html[data-lake="on"] .fqlist details, html[data
 .tilt-r .tag { font-size: clamp(.95rem, 1.3vw, 1.2rem); }
 #experience { padding-top: clamp(70px, 9vw, 150px); }
 @media (max-width: 860px) { .tilt-hero { grid-template-columns: 1fr; padding-bottom: 70px; } .tilt-stage { width: min(82vw, 380px); } }
+   /* ---- Tilt on every card: moving glare layer ---- */
+   .tilt-glare { position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 6; opacity: 0; mix-blend-mode: soft-light; background: radial-gradient(circle at var(--gx, 50%) var(--gy, 30%), rgba(255,255,255,.95), rgba(255,255,255,0) 55%); }
+   .st-card, .tkgrid li, .fqlist details, .fn-stat, .fn-mc, .xpanel, .xmedia, .smedia, .spanel, .gstage .flip { will-change: transform; }
+   .xmedia, .xpanel, .smedia, .spanel { position: relative; }
