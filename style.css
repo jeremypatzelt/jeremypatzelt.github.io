@@ -583,3 +583,11 @@ html[data-lake="on"] .tkgrid li, html[data-lake="on"] .fqlist details, html[data
 .tilt-shadow { position: absolute; left: 8%; right: 8%; bottom: -26px; height: 40px; border-radius: 50%; background: rgba(30,40,110,.35); filter: blur(22px); transform: translate(var(--sx, 0), 0) scale(var(--ss, 1)); }
 @media (max-width: 860px) { .tilt-hero { grid-template-columns: 1fr; justify-items: center; text-align: center; padding-top: 110px; } .tilt-r { text-align: center; } .tilt-r .tag { margin: 18px auto 0; } .tilt-stage { width: min(78vw, 360px); } }
 @media (prefers-reduced-motion: reduce) { .tilt-card { transform: none !important; } }
+/* ---- Hero tweaks: smaller side text, bigger card, more space below ---- */
+.tilt-hero { grid-template-columns: 1fr minmax(300px, 38vw) 1fr; align-items: center; padding-bottom: clamp(90px, 12vw, 170px); }
+.tilt-stage { width: min(100%, 560px); }
+.tilt-side .word { font-size: clamp(2.4rem, 5.6vw, 5.4rem); }
+.tilt-side .hname { font-size: clamp(1rem, 1.8vw, 1.6rem); }
+.tilt-r .tag { font-size: clamp(.95rem, 1.3vw, 1.2rem); }
+#experience { padding-top: clamp(70px, 9vw, 150px); }
+@media (max-width: 860px) { .tilt-hero { grid-template-columns: 1fr; padding-bottom: 70px; } .tilt-stage { width: min(82vw, 380px); } }
